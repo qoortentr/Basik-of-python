@@ -1,0 +1,45 @@
+import math
+
+list_first = []
+list_cube = []
+summ_seven = 0
+
+for i in range(0, 1000):
+    list_first.append(i + 1)
+
+for i in list_first:
+    if i % 2 != 0:
+        list_cube.append(str(int(math.pow(i, 3))))
+
+print('Список кубов: ', list_cube)
+
+for i in range(0, len(list_cube)):
+    summ = 0
+    for p in range(0, len(list_cube[i])):
+        summ += int(list_cube[i][p])
+    if summ % 7 == 0:
+        summ_seven += int(list_cube[i])
+
+print('Сумма чисел из списка кубов, делющихся на 7 без остатка: ', summ_seven)
+
+###############################################################################
+###############################################################################
+###############################################################################
+
+print('\n\n' + '*' * 100 + ' Задание b ' + '*' * 100 + '\n\n')
+
+summ_seventeen = 0
+
+for i in range(0, len(list_cube)):
+    list_cube[i] = int(list_cube[i]) + 17
+
+print('Список кубов +17: ', list_cube)
+
+for i in range(0, len(list_cube)):
+    summ = 0
+    for p in range(0, len(str(list_cube[i]))):
+        summ += p
+    if summ % 7 == 0:
+        summ_seventeen += list_cube[i]
+
+print('Сумма чисел из списка кубов +17, делющихся на 7 без остатка: ', summ_seventeen)
