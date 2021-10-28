@@ -1,0 +1,18 @@
+duration = int(input('Введите количество секунд: '))
+time = []
+
+print(f'duration = {duration}')
+
+if int(duration / 86400) != 0:
+    time.append(f'{int(duration / 86400)} дн')
+    duration %= 86400
+if int(duration / 3600) != 0:
+    time.append(f'{int(duration / 3600)} час')
+    duration %= 3600
+if int(duration / 60) != 0:
+    time.append(f'{int(duration / 60)} мин')
+    duration %= 60
+if duration % 60 != 0:
+    time.append(f'{duration % 60} сек')
+
+print(time)
