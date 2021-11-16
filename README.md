@@ -1,1 +1,0 @@
-# Basik-of-python
