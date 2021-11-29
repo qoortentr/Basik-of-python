@@ -1,13 +1,23 @@
-def type_logger(callback):
-    def wrapper(*args):
-        for i in args:
-            print(str(callback.__name__) + '(' + str(i) + ':', str(type(callback(i))) + ')')
-    return wrapper
+class Worker:
+
+    def __init__(self, name, surname, position, profit, bonus):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._income = {"profit": profit, "bonus": bonus}
 
 
-@type_logger
-def calc_cube(x):
-    return x ** 3
+class Position(Worker):
+
+    def get_full_name(self):
+        return f"{self.name} {self.surname}"
+
+    def get_total_income(self):
+        return f"{sum(self._income.values())}"
 
 
-calc_cube(3.2, 2, -1.3)
+info = Position('Ivan', 'Ivanov', 'accountant', 40000, 15000)
+print(info.get_full_name(), info.get_total_income())
+
+info = Position('Petr', 'Petrov', 'security', 60000, 5000)
+print(info.get_full_name(), info.get_total_income())

@@ -1,11 +1,26 @@
-import re
+from time import sleep
 
-text = input('Ведите почту: ')
-if '@'not in text or '.'not in text:
-    raise Exception('Такой почты не существует')
 
-pattern = re.compile(r'(?P<username>\w+)[@](?P<domain>\w+[.,a-z]+)')
+class TraficLights:
+    __color = 'black'
 
-result_iter = pattern.finditer(text)
-for i in result_iter:
-    print(i.groupdict())
+    def running(self):
+        self.__color = "red"
+        print(f'\r{self.__color}', end='')
+        sleep(8)
+
+        self.__color = "yellow"
+        print(f'\r{self.__color}', end='')
+        sleep(2)
+
+        self.__color = "green"
+        print(f'\r{self.__color}', end='')
+        sleep(4)
+
+        self.__color = "yellow"
+        print(f'\r{self.__color}', end='')
+        sleep(2)
+
+
+run = TraficLights()
+run.running()
