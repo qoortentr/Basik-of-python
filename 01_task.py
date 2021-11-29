@@ -1,11 +1,19 @@
-import re
+class Date:
+    def __init__(self, date):
+        self.date = date
 
-text = input('Ведите почту: ')
-if '@'not in text or '.'not in text:
-    raise Exception('Такой почты не существует')
+    @classmethod
+    def fun(cls, date):
+        return list(map(int, date.split('-')))
 
-pattern = re.compile(r'(?P<username>\w+)[@](?P<domain>\w+[.,a-z]+)')
+    @staticmethod
+    def valid_date(date):
+        if 1 <= Date.fun(date)[0] <= 31 and 1 <= Date.fun(date)[1] <= 12:
+            return 'Is Valid'
+        else:
+            raise ValueError("Date is not valid")
 
-result_iter = pattern.finditer(text)
-for i in result_iter:
-    print(i.groupdict())
+
+print(Date.fun('05-07-2021'))
+# print(Date.valid_date('05-07-2021'))
+print(Date.valid_date('12-13-14'))
