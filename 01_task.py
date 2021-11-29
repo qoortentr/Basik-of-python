@@ -1,11 +1,23 @@
-import re
+class Matrix:
+    def __init__(self, list_list):
+        self.list = list_list
 
-text = input('Ведите почту: ')
-if '@'not in text or '.'not in text:
-    raise Exception('Такой почты не существует')
+    def __str__(self):
+        return f"{self.list}"
 
-pattern = re.compile(r'(?P<username>\w+)[@](?P<domain>\w+[.,a-z]+)')
+    def __add__(self, other):
+        item = [[int(self.list[line][num]) + int(other.list[line][num]) for num in range(len(self.list[line]))] for line
+                in range(len(self.list))]
+        return item
 
-result_iter = pattern.finditer(text)
-for i in result_iter:
-    print(i.groupdict())
+    def output(self):
+        for i in self.list:
+            print("|", *i, "|")
+
+
+matrix_1 = Matrix([[21, 5], [3, 54], [56, 67]])
+matrix_2 = Matrix([[79, 95], [97, 46], [44, 33]])
+
+matrix_1.output()
+print(matrix_1)
+print(matrix_1 + matrix_2)
